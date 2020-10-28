@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>
+
+             <?php
+
+            $bgErr = "";
+            $bg = "";
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") 
+            {
+
+            if(empty($_POST["bg"])) 
+            
+            {
+             $bgErr = "blood group is required";
+            }
+
+            else
+
+            {
+            $bg = test_input($_POST["bg"]);
+            }
+
+            }
+
+            function test_input($data)
+            {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+            }
+
+            ?>
+
+
+        <fieldset>
+            <legend style="font-family: fantasy;">BLOOD GROUP</legend>
+            <select id="bg" name="bg" >
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="0+">0+</option>
+        <option value="0-">0-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        </select><br>
+            <hr>
+            <input type="submit" name="Submit">
+        </fieldset>
+
+        <?php
+
+        echo $bg;
+        echo "<br>"; 
+
+        ?>
+
+    </body>
+</html>
